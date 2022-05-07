@@ -1,0 +1,94 @@
+<html>
+<head>
+<title>main.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cc7832;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+main.py</font>
+</center></td></tr></table>
+<pre><span class="s0">import </span><span class="s1">re</span>
+<span class="s1">A = </span><span class="s2">r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'</span>
+<span class="s1">B = </span><span class="s2">&quot;^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%#?&amp;])[A-Za-z\d@$!#%?&amp;]{6,20}$&quot;</span>
+<span class="s1">flag=</span><span class="s3">0</span>
+<span class="s0">def </span><span class="s1">check(email):</span>
+    <span class="s0">if</span><span class="s1">(re.fullmatch(A</span><span class="s0">, </span><span class="s1">email)):</span>
+        <span class="s1">print(</span><span class="s2">&quot;Valid Email&quot;</span><span class="s1">)</span>
+        <span class="s1">flag=</span><span class="s3">1</span>
+    <span class="s0">else</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s2">&quot;Invalid Email&quot;</span><span class="s1">)</span>
+    <span class="s0">return </span><span class="s1">flag</span>
+<span class="s0">def </span><span class="s1">check2(pswd):</span>
+    <span class="s0">if </span><span class="s1">len(pswd)&gt;</span><span class="s3">5 </span><span class="s0">and </span><span class="s1">len(pswd)&lt;</span><span class="s3">16</span><span class="s1">:</span>
+        <span class="s0">return </span><span class="s3">1</span>
+    <span class="s0">else</span><span class="s1">:</span>
+        <span class="s0">return </span><span class="s3">0</span>
+<span class="s1">print(</span><span class="s2">&quot;enter 1 for registeration:&quot;</span><span class="s1">)</span>
+<span class="s1">print(</span><span class="s2">&quot;enter 2 for login:&quot;</span><span class="s1">)</span>
+<span class="s1">print(</span><span class="s2">&quot;Enter any key if you forgot your password:&quot;</span><span class="s1">)</span>
+<span class="s1">val=(int(input()))</span>
+<span class="s0">if </span><span class="s1">val==</span><span class="s3">1</span><span class="s1">:</span>
+
+    <span class="s1">print(</span><span class="s2">&quot;Enter Email id:&quot;</span><span class="s1">)</span>
+    <span class="s1">Email=(str(input()))</span>
+    <span class="s1">flag=check(Email)</span>
+    <span class="s1">print(</span><span class="s2">&quot;Enter the password:&quot;</span><span class="s1">)</span>
+    <span class="s1">print(</span><span class="s2">&quot;*Make sure the password contains minimum one special character,digit,Uppercase and lowercase*&quot;</span><span class="s1">)</span>
+    <span class="s1">pswd=(str(input()))</span>
+    <span class="s1">p=check2(pswd)</span>
+    <span class="s1">che = re.compile(B)</span>
+
+    <span class="s0">if  </span><span class="s1">p==</span><span class="s3">1</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s2">&quot;Password is valid.&quot;</span><span class="s1">)</span>
+        <span class="s1">flag=flag+</span><span class="s3">1</span>
+    <span class="s0">else</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s2">&quot;Password invalid!!&quot;</span><span class="s1">)</span>
+    <span class="s0">if</span><span class="s1">(flag==</span><span class="s3">2</span><span class="s1">):</span>
+        <span class="s1">file1 = open(</span><span class="s2">&quot;Original.txt&quot;</span><span class="s0">, </span><span class="s2">&quot;a+&quot;</span><span class="s1">)</span>
+        <span class="s1">final = Email+</span><span class="s2">&quot; &quot;</span><span class="s1">+pswd</span>
+        <span class="s1">file1.write(final+</span><span class="s2">&quot;</span><span class="s0">\n</span><span class="s2">&quot;</span><span class="s1">)</span>
+        <span class="s1">file1.close()</span>
+    <span class="s1">f = open(</span><span class="s2">'Original.txt'</span><span class="s0">, </span><span class="s2">'r'</span><span class="s1">)</span>
+    <span class="s0">if </span><span class="s1">f.mode==</span><span class="s2">'r'</span><span class="s1">:</span>
+        <span class="s1">contents= f.read()</span>
+
+<span class="s0">elif </span><span class="s1">val==</span><span class="s3">2</span><span class="s1">:</span>
+
+    <span class="s1">passwordAttemptLoop = </span><span class="s3">0</span>
+    <span class="s1">print(</span><span class="s2">&quot;You have chosen to login!</span><span class="s0">\n</span><span class="s2">&quot;</span><span class="s1">)</span>
+    <span class="s1">username = input(</span><span class="s2">&quot;Please print your username below</span><span class="s0">\n</span><span class="s2">&quot;</span><span class="s1">)</span>
+    <span class="s1">password = input(</span><span class="s2">&quot;Please print your password below</span><span class="s0">\n</span><span class="s2">&quot;</span><span class="s1">)</span>
+    <span class="s0">for </span><span class="s1">line </span><span class="s0">in </span><span class="s1">open(</span><span class="s2">&quot;Original.txt&quot;</span><span class="s0">,</span><span class="s2">&quot;r&quot;</span><span class="s1">).readlines():</span>
+        <span class="s1">loginDetails = line.split()</span>
+        <span class="s0">if </span><span class="s1">username == loginDetails[</span><span class="s3">0</span><span class="s1">] </span><span class="s0">and </span><span class="s1">password == loginDetails[</span><span class="s3">1</span><span class="s1">]:</span>
+            <span class="s1">passwordAttemptLoop = passwordAttemptLoop + </span><span class="s3">1</span>
+            <span class="s1">print(</span><span class="s2">&quot;Login Successful&quot;</span><span class="s1">)</span>
+            <span class="s0">break</span>
+    <span class="s0">if </span><span class="s1">passwordAttemptLoop ==</span><span class="s3">0</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s2">&quot;Your username and/ or password is incorrect! Please try again!&quot;</span><span class="s1">)</span>
+<span class="s0">else</span><span class="s1">:</span>
+
+    <span class="s1">loop=</span><span class="s3">0</span>
+    <span class="s1">email= str(input(</span><span class="s2">&quot;Enter the Email ID: &quot;</span><span class="s1">))</span>
+    <span class="s0">for </span><span class="s1">line </span><span class="s0">in </span><span class="s1">open(</span><span class="s2">&quot;Original.txt&quot;</span><span class="s0">,</span><span class="s2">&quot;r&quot;</span><span class="s1">).readlines():</span>
+        <span class="s1">loginDetails = line.split()</span>
+        <span class="s0">if </span><span class="s1">email == loginDetails[</span><span class="s3">0</span><span class="s1">]:</span>
+            <span class="s1">pswd = loginDetails[</span><span class="s3">1</span><span class="s1">]</span>
+            <span class="s1">print(</span><span class="s2">&quot;Your password is :&quot;</span><span class="s1">)</span>
+            <span class="s1">print(pswd)</span>
+            <span class="s1">loop =</span><span class="s3">1</span>
+            <span class="s0">break</span>
+    <span class="s0">if </span><span class="s1">loop==</span><span class="s3">0</span><span class="s1">:</span>
+        <span class="s1">print(</span><span class="s2">&quot;Your credentials aren't stored please register again&quot;</span><span class="s1">)</span>
+
+</pre>
+</body>
+</html>
